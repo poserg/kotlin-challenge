@@ -9,8 +9,8 @@ fun main(args: Array<String>) {
         return
 
     val p = s.toInt()
-
-    for (i in 1..p) {
+    var str = ""
+    for (i in 0..p - 1) {
         val t = readLine()
         if (t != null) {
             var arr = t.split(" ")
@@ -18,11 +18,10 @@ fun main(args: Array<String>) {
             val m = arr[1].toInt()
             val k = arr[2].toInt()
 
-            val max = n - k
-            val min = max - m
-            print (min)
-            print(" ")
-            print(max)
+            var max = n - k
+            var min = max - m
+            str = str.plus(min.toString().plus(" ").plus(max.toString()).plus("\n"))
         }
     }
+    print (str.substring(0, str.length - 1))
 }
