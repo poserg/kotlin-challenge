@@ -11,7 +11,9 @@ fun main(args: Array<String>) {
         return
 
     var c1 = s.toInt()
-    var str1 = readLine()
+    val str1 = readLine()
+    if (str1 !is String)
+        return
 
     val s2 = readLine()
     if (s2 !is String)
@@ -20,28 +22,52 @@ fun main(args: Array<String>) {
     var c2 = s2.toInt()
     var str2 = readLine()
 
-    if (str1 is String) {
-        val fds = str1.indexOf(' ')
+    if (c1 > c2) {
+        run(str2, c2, str1)
+    } else {
+        run(str1, c1, str2)
     }
-    print (str1.substr)
-//    for (i in 0..p - 1) {
-//        val t = readLine()
-//        if (t != null) {
-//            var arr = t.split(" ")
-//            val n = arr[0].toInt()
-//            val m = arr[1].toInt()
-//            val k = arr[2].toInt()
-//
-//            var max = n - k
-//            var min = max - m
-//            str = str.plus(min.toString().plus(" ").plus(max.toString()).plus("\n"))
-//        }
-//    }
-//    print (str.substring(0, str.length - 1))
 }
 
-fun getLines(str: String, count: Int) {
-    val result = ArrayList<String>()
+fun run(str1 : String, c1 : Int, str2 : String) {
+    var test = ArrayList<String>()
+    test.add(str1)
+    var c = c1
 
+    while(c > 0) {
+
+        for (t in test) {
+            val k = str2.indexOf(t)
+            if (k >= 0) {
+                print (c)
+                print ("\n")
+                print (t)
+                return
+            }
+        }
+
+        test = getLines(test)
+
+        c--
+    }
+
+
+    for (t in test) {
+        print (t + "k\n")
+    }
+}
+
+fun getLines(strArr: ArrayList<String>): ArrayList<String> {
+    val result = ArrayList<String>()
+    var m = strArr[0]
+    result.add(m.substring(0, m.lastIndexOf(" ")))
+    result.add(m.substring(m.indexOf(" ") + 1))
+
+    var i = 1;
+    while (i < strArr.size()) {
+        m = strArr[i]
+        result.add(m.substring(m.indexOf(" ")))
+        i++
+    }
     return result
 }
